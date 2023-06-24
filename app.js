@@ -29,6 +29,7 @@ sequelize.sync({force:false})
 
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img',express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
@@ -50,8 +51,10 @@ passportConfig();
 
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const postRouter = require('./routes/post');
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
+app.use('/post', postRouter);
 
 app.use((req,res,next)=>{
     const error = new Error(`${req.method} ${req.url}에서 라우터를 찾을 수 없습니다`);
