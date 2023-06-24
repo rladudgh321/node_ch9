@@ -7,8 +7,8 @@ const { renderJoin, renderProfile, renderMain } = require('../controllers/page')
 router.use((req,res,next)=>{
     res.locals.user = req.user || null;
     res.locals.followerCount = 0;
-    res.locals.follwingCount = 0;
-    res.locals.follwingIdList = [];
+    res.locals.followingCount = 0;
+    res.locals.followingIdList = [];
     next();
 });
 
